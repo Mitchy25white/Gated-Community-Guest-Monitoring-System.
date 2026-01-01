@@ -1,0 +1,76 @@
+<div class="container">
+    <h1 class="text-center">Administrator Dashboard</h1>
+  
+    <div class="row">
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="#manage-guests" class="list-group-item list-group-item-action">Manage Guests</a>
+          <a href="#security-settings" class="list-group-item list-group-item-action">Security Settings</a>
+          <a href="#system-settings" class="list-group-item list-group-item-action">System Settings</a>
+          <a href="#reports" class="list-group-item list-group-item-action">Reports</a>
+        </div>
+      </div>
+  
+      <div class="col-md-9">
+        <div id="manage-guests" class="tab-pane active">
+          </div>
+        <div id="security-settings" class="tab-pane">
+          </div>
+        <div id="system-settings" class="tab-pane">
+          </div>
+        <div id="reports" class="tab-pane">
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="admin-content">
+    <div id="manage-guests">
+      <h3>Manage Guests</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact Information</th>
+            <th>Vehicle</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="security-settings">
+      <h3>Security Settings</h3>
+      <form>
+        <div class="form-group">
+          <label for="access-code">Access Code:</label>
+          <input type="text" class="form-control" id="access-code" name="access-code">   
+
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+
+    <div id="system-settings">
+      <h3>System Settings</h3>
+      <form>
+        <div class="form-group">
+          <label for="gate-open-hours">Gate Open Hours:</label>
+          <input type="text" class="form-control" id="gate-open-hours" name="gate-open-hours">
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+
+    <div id="reports">
+      <h3>Reports</h3>
+      <div class="form-group">
+        <label for="report-date-range">Date Range:</label>
+        <input type="text" class="form-control" id="report-date-range" name="report-date-range">
+      </div>
+      <button type="submit" class="btn btn-primary">Generate Report</button>
+    </div>
+  </div>
+</section>

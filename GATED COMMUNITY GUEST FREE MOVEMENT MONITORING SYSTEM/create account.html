@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>Host Login</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+
+body {
+background: url("../PAM.jpg") no-repeat; 
+display: flex;
+align-items: centre;
+justify-content: center;
+min-height: 100vh;
+background-size: cover;
+background-position: center;
+}
+
+.wrapper {
+background: transparent;
+border: 2px solid #010e1b;
+color: #5AA5CD;
+backdrop-filter: blur(20px);
+box-shadow: 0 0 10px #6F71A1;
+width: 420px;
+height: auto;
+border-radius: 10px;
+padding: 20px;
+
+}
+.wrapper h1 {
+font-size: 36px;
+text-align: center;
+}
+
+.wrapper .input-box{
+position: relative;
+width: 100%;
+height: 50px;
+margin: 30px 0;
+}
+.input-box input {
+width: 100%;
+height: 100%;
+background: transparent;
+border: none;
+outline: none;
+border: 2px solid #010e1b;
+border-radius: 40px;
+font-size: 16px;
+color: #0f101d;
+padding: 20px 45px;
+}
+.input-box input::placeholder {
+color: rgb(13, 20, 18);
+}
+.input-box i {
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 20px;
+}
+
+
+.wrapper btn {
+width: 100%;
+height: 45px;
+border: 2px solid #010e1b;
+outline: none;
+border-radius: 40px;
+background: #0d0dd8;
+color: #3a3b64;
+cursor: pointer;
+font-weight: 600;
+font-size: 16px;
+box-shadow: 0 0 10px #010114;
+
+}
+
+</style>
+
+<div class="wrapper">
+    <form action="">
+        <h1>Create Account</h1>
+        <div class="input-box">
+          <input type="text" placeholder="username" name="username" required>
+          <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="email" name="email" required>
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="password" name="password" required>
+            <i class='bx bxs-lock'></i>
+            </div>
+
+          <button type="submit" class="btn">sign up</button>
+        </form>
+        </div></br>
