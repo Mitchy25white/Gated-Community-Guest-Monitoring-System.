@@ -21,3 +21,12 @@ Residents Table: Names, house numbers, and contact info.
 Visitors Table: IDs, purpose of visit, and time stamps.
 Security Logs: Historical data for security audit purposes.
 
+🔧 Installation & Setup
+Clone the repository:
+Bash
+git clone https://github.com/Mitchy25white/Gated-Community-Guest-Monitoring-System.git
+Import the .sql file into your MySQL server.
+Configure the database connection in the source code.
+
+Run the application using your preferred IDE (e.g., NetBeans, VS Code).
+
