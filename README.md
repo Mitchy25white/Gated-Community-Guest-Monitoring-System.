@@ -1,20 +1,21 @@
 # 🛡️ Gated Community Guest Monitoring System
-**An Engineering-First approach to Residential Security**
+**An Engineering-First Approach to Residential Security & Data Integrity**
 
-A robust mobile solution built to manage visitor flow with high integrity and security. This project bridges the gap between traditional security and modern distributed software architecture.
+This project is a robust mobile solution designed to manage visitor flows with high security standards. It bridges the gap between traditional manual logging and modern, automated distributed software architecture.
 
-## 🚀 Core Features & Coding Logic
-* **Mobile Engine:** Built in **Java** via Android Studio, focusing on clean, modular code and intuitive UX.
-* **Environment & Testing:** Rigorous validation performed using **Android Virtual Devices (AVD)**. I simulated various hardware specs to ensure stable performance across different Android API levels.
-* **Database Integration:** High-volume logging managed via **MySQL**, optimized for fast retrieval using mathematical data processing logic.
+## 🚀 Key Features & Coding Logic
+* **Mobile Engine:** Built using **Java** in Android Studio, prioritizing modularity and clean code.
+* **Rigorous Testing:** Performance validation executed via **Android Virtual Devices (AVD)** across multiple API levels to ensure UI/UX stability.
+* **Database Management:** High-volume logging integrated with **MySQL**, optimized using mathematical processing for fast data retrieval.
 
-## 🏗️ The Engineering Transition (Ongoing Study)
-I am currently scaling this project from a local application to a **Distributed System**:
-* **SCM Management:** Moving to a professional **Git Flow** strategy using branching for new feature deployment.
-* **Distributed Architecture:** Re-designing the backend to support multi-gate synchronization, ensuring data consistency across the network.
-* **Simulation & Modelling:** Implementing traffic flow simulations to predict and optimize gate-entry response times.
+## 🏗️ The Engineering Roadmap (Ongoing)
+I am currently scaling this from a standalone app to a **Distributed System**:
+* **Distributed Architecture:** Re-designing the backend to support multi-node synchronization (e.g., multiple estate gates sharing one real-time database).
+* **SCM Implementation:** Adopting professional **Software Configuration Management** via Git to handle feature branching and version control.
+* **Simulation & Modelling:** Utilizing simulation techniques to predict peak traffic and optimize system response times.
 
 ## 🛠️ Technical Stack
-* **Languages:** Java, SQL
-* **Tools:** Android Studio, AVD, Git
-* **Infrastructure:** Insights gained from ICT Security training at **The National Treasury**.
+* **Languages:** Java, SQL (SSMS/MySQL),python, HTML5 and CSS
+* **Mobile:** Android Studio, AVD, SDK Management
+* **Networking:** CCNA Certified protocols for secure data transmission
+* **Insights:** Built with security standards practiced during my tenure at **The National Treasury**.
