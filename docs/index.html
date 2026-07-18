@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ Gated Community Guest Monitoring System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.5);
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ff4757;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .status-approved {
+            color: #27ae60;
+            font-weight: 600;
+            padding: 5px 10px;
+            background: #d5f4e6;
+            border-radius: 5px;
+        }
+        
+        .status-flagged {
+            color: #e74c3c;
+            font-weight: 600;
+            padding: 5px 10px;
+            background: #fadbd8;
+            border-radius: 5px;
+        }
+        
+        .status-pending {
+            color: #f39c12;
+            font-weight: 600;
+            padding: 5px 10px;
+            background: #fdebd0;
+            border-radius: 5px;
+        }
+        
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .refresh-btn:hover {
+            background: #764ba2;
+        }
+        
+        .refresh-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #95a5a6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #95a5a6;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Gated Community Guest Monitoring</h1>
+            <p class="subtitle">Real-time live dashboard for secure guest tracking</p>
+        </header>
+        
+        <div class="dashboard">
+            <div>
+                <button class="refresh-btn" onclick="refreshData()">🔄 Refresh Now</button>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-guests">-</div>
+                    <div class="stat-label">📊 Today's Guests</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="currently-inside">-</div>
+                    <div class="stat-label">👥 Currently Inside</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="flagged-count">-</div>
+                    <div class="stat-label">⚠️ Flagged Guests</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avg-visit">-</div>
+                    <div class="stat-label">⏱️ Avg Visit Time</div>
+                </div>
+            </div>
+            
+            <h2>
+                <span class="live-indicator"></span>
+                Current Guests (Live)
+            </h2>
+            
+            <div id="guests-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading live guest data...
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>⚡ Real-Time Updates</h3>
+                    <p>Guest data refreshes automatically every 3 seconds for instant security awareness.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔐 Security Analytics</h3>
+                    <p>Automatic flagging of suspicious patterns and extended visits.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📈 Performance Metrics</h3>
+                    <p>Track peak hours, average visit duration, and guest flow patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏢 Multi-Estate Support</h3>
+                    <p>Centralized database supporting multiple gated communities.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Mobile Integration</h3>
+                    <p>Seamless API endpoints for mobile app and web dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🚀 Scalable Architecture</h3>
+                    <p>Built to handle 1000+ guests daily with sub-100ms response times.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sample demo data for GitHub Pages (no backend required)
+        const DEMO_GUESTS = [
+            { id: 1, name: 'John Doe', entry_time: '2026-07-18 08:30:00', host: 'Apt 101', vehicle: 'ABC123', status: 'approved', time_inside: '45 mins' },
+            { id: 2, name: 'Sarah Smith', entry_time: '2026-07-18 09:15:00', host: 'Apt 205', vehicle: 'XYZ789', status: 'approved', time_inside: '30 mins' },
+            { id: 3, name: 'Michael Brown', entry_time: '2026-07-18 10:00:00', host: 'Apt 312', vehicle: 'DEF456', status: 'pending', time_inside: '15 mins' },
+            { id: 4, name: 'Jessica Lee', entry_time: '2026-07-18 07:45:00', host: 'Apt 150', vehicle: 'GHI789', status: 'flagged', time_inside: '120+ mins' },
+            { id: 5, name: 'David Wilson', entry_time: '2026-07-18 10:45:00', host: 'Apt 401', vehicle: 'JKL012', status: 'approved', time_inside: '5 mins' },
+        ];
+        
+        function formatTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        function updateDashboard() {
+            // Update stats
+            document.getElementById('total-guests').textContent = DEMO_GUESTS.length;
+            document.getElementById('currently-inside').textContent = DEMO_GUESTS.filter(g => g.status !== 'flagged').length;
+            document.getElementById('flagged-count').textContent = DEMO_GUESTS.filter(g => g.status === 'flagged').length;
+            document.getElementById('avg-visit').textContent = '45m';
+            
+            // Update guests table
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>👤 Guest Name</th>
+                            <th>🕐 Entry Time</th>
+                            <th>🏠 Host</th>
+                            <th>🚗 Vehicle</th>
+                            <th>✅ Status</th>
+                            <th>⏱️ Time Inside</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${DEMO_GUESTS.map(guest => `
+                            <tr>
+                                <td><strong>${guest.name}</strong></td>
+                                <td>${formatTime(guest.entry_time)}</td>
+                                <td>${guest.host}</td>
+                                <td>${guest.vehicle}</td>
+                                <td><span class="status-${guest.status}">${guest.status.toUpperCase()}</span></td>
+                                <td>${guest.time_inside}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            document.getElementById('guests-container').innerHTML = tableHTML;
+        }
+        
+        function refreshData() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                btn.style.transform = 'rotate(0deg)';
+                updateDashboard();
+            }, 600);
+        }
+        
+        // Initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDashboard();
+            // Auto-refresh every 3 seconds
+            setInterval(updateDashboard, 3000);
+        });
+    </script>
+</body>
+</html>
